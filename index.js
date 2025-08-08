@@ -1,5 +1,6 @@
 //console.log("hola mundo!!");
 //! npm install bcryptjs
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -24,7 +25,9 @@ app.use('/api/auth',require('./routes/auth'));
 app.use('/api/events',require('./routes/events'));
 // TODO auth // crear , login,
 
-
+app.use('*',(req, res) => {
+    res.sendFile(path.join(__dirname,'public/index.html'));
+} )
 
 //Escuchar peticiones
 app.listen(process.env.PORT, () => {
